@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liquid Glass Web — example</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="liquid-glass.css">
+<style>
+  html, body { margin: 0; background: var(--canvas); }
+  body { display: grid; place-items: center; min-height: 100vh; padding: var(--space-4); box-sizing: border-box; gap: var(--space-4); }
+  .themes { display: flex; gap: var(--space-2); }
+  .screen { position: relative; width: 390px; max-width: 100%; height: 760px; border-radius: var(--radius-xl); overflow: hidden; background: var(--canvas); box-shadow: var(--surface-lift); }
+  .scroll { position: absolute; inset: 0; overflow-y: auto; padding: 72px var(--space-4) 110px; }
+  .hero { height: 180px; border-radius: var(--radius-lg); position: relative; overflow: hidden; background: var(--ink); margin: var(--space-2) 0 var(--space-6); }
+  .hero i { position: absolute; display: block; border-radius: 50%; }
+  .hero i:nth-child(1) { width: 200px; height: 200px; left: -40px; top: -60px; background: var(--accent); }
+  .hero i:nth-child(2) { width: 140px; height: 140px; right: -20px; bottom: -50px; background: var(--warning); }
+  .hero .lg-dim { position: absolute; left: var(--space-3); bottom: var(--space-3); border-radius: var(--radius-full); padding: var(--space-1); display: flex; gap: var(--space-1); }
+  .top { position: absolute; top: 0; left: 0; right: 0; }
+  .bottom { position: absolute; left: 0; right: 0; bottom: var(--space-4); display: flex; justify-content: center; z-index: 2; }
+  .lt { margin: var(--space-2) var(--space-1) var(--space-2); }
+</style>
+</head>
+<body>
+<div class="themes" role="group" aria-label="Theme">
+  <button class="lg-btn lg-focusable lg-btn--glass lg-glass lg-btn--sm" data-t="light">Light</button>
+  <button class="lg-btn lg-focusable lg-btn--glass lg-glass lg-btn--sm" data-t="dark">Dark</button>
+  <button class="lg-btn lg-focusable lg-btn--glass lg-glass lg-btn--sm" data-t="contrast">High contrast</button>
+</div>
+
+<div class="screen lg-root">
+  <div class="scroll">
+    <h1 class="large-title lt">Access</h1>
+    <div class="hero" aria-hidden="false">
+      <i></i><i></i>
+      <div class="lg-dim">
+        <button class="lg-btn lg-focusable lg-btn--clear lg-glass lg-glass--clear lg-btn--icon" aria-label="Share"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M6 12v7h12v-7"/></svg></button>
+      </div>
+    </div>
+    <section class="lg-section">
+      <h3 class="lg-section__header">Pending Requests</h3>
+      <div class="lg-section__body">
+        <button class="lg-row lg-row--button lg-focusable">
+          <span class="lg-row__lead"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M14.5 4a5.5 5.5 0 1 1-4.9 8L4 17.6V20h2.4v-2h2v-2h2l1.4-1.4A5.5 5.5 0 0 1 14.5 4zM16 8.5h.01"/></svg></span>
+          <span class="lg-row__main"><span class="lg-row__title" style="display:block">vault-prod-01</span><span class="lg-row__sub" style="display:block">Requested by Ana · 2 h</span></span>
+          <svg class="lg-icon lg-row__chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div class="lg-row">
+          <span class="lg-row__main"><span class="lg-row__title" style="display:block">db-billing</span></span>
+          <span class="lg-status lg-status--warning"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M12 4 21 19H3zM12 10v4M12 16.8h.01"/></svg>Expires soon</span>
+        </div>
+        <div class="lg-row">
+          <span class="lg-row__main"><span class="lg-row__title" style="display:block" id="n1">Notify me on approval</span></span>
+          <button class="lg-toggle__track lg-focusable" role="switch" aria-checked="true" aria-labelledby="n1"><span class="lg-toggle__knob"></span></button>
+        </div>
+      </div>
+      <p class="lg-section__footer">Requests expire after 24 hours.</p>
+    </section>
+    <section class="lg-section">
+      <h3 class="lg-section__header">Recent Sessions</h3>
+      <div class="lg-section__body">
+        <div class="lg-row"><span class="lg-row__main"><span class="lg-row__title">ssh-gateway</span></span><span class="lg-row__detail">12 min</span></div>
+        <div class="lg-row"><span class="lg-row__main"><span class="lg-row__title">k8s-admin</span></span><span class="lg-row__detail">1 h</span></div>
+        <div class="lg-row"><span class="lg-row__main"><span class="lg-row__title">vault-staging</span></span><span class="lg-row__detail">3 h</span></div>
+        <div class="lg-row"><span class="lg-row__main"><span class="lg-row__title">erp-finance</span></span><span class="lg-row__detail">Yesterday</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="top">
+    <div class="lg-edge lg-edge--top" aria-hidden="true"></div>
+    <div class="lg-toolbar" role="toolbar" aria-label="Access">
+      <div class="lg-toolbar__spacer"></div>
+      <div class="lg-group lg-glass" role="group" aria-label="Actions">
+        <button class="lg-btn lg-focusable lg-btn--glass lg-btn--icon" aria-label="Filter"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+        <button class="lg-btn lg-focusable lg-btn--glass lg-btn--icon" aria-label="More"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M6 12h.01M12 12h.01M18 12h.01"/></svg></button>
+      </div>
+      <button class="lg-btn lg-focusable lg-btn--prominent lg-btn--icon lg-btn--lg" aria-label="New request"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    </div>
+  </div>
+
+  <div class="lg-edge lg-edge--bottom" aria-hidden="true"></div>
+  <div class="bottom">
+    <nav class="lg-tabbar-wrap" aria-label="Tabs">
+      <div class="lg-tabbar lg-glass" role="tablist">
+        <button class="lg-tab lg-focusable" role="tab" aria-selected="false"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg><span>Home</span></button>
+        <button class="lg-tab lg-focusable" role="tab" aria-selected="true"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M14.5 4a5.5 5.5 0 1 1-4.9 8L4 17.6V20h2.4v-2h2v-2h2l1.4-1.4A5.5 5.5 0 0 1 14.5 4zM16 8.5h.01"/></svg><span>Access</span></button>
+        <button class="lg-tab lg-focusable" role="tab" aria-selected="false"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15zM10 20.5a2.2 2.2 0 0 0 4 0"/></svg><span>Alerts</span></button>
+      </div>
+      <button class="lg-tab-search lg-glass lg-focusable" aria-label="Search"><svg class="lg-icon" viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zM15.5 15.5 20 20"/></svg></button>
+    </nav>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[data-t]').forEach(function (b) {
+    b.addEventListener('click', function () { document.documentElement.setAttribute('data-theme', b.getAttribute('data-t')); });
+  });
+  document.querySelectorAll('[role="switch"]').forEach(function (s) {
+    s.addEventListener('click', function () { s.setAttribute('aria-checked', s.getAttribute('aria-checked') === 'true' ? 'false' : 'true'); });
+  });
+  document.querySelectorAll('[role="tab"]').forEach(function (t) {
+    t.addEventListener('click', function () {
+      t.parentNode.querySelectorAll('[role="tab"]').forEach(function (o) { o.setAttribute('aria-selected', o === t ? 'true' : 'false'); });
+    });
+  });
+</script>
+</body>
+</html>
